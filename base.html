@@ -1,0 +1,10 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}{{site['artist_name']}}{% endblock %}</title>
+<link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+</head><body>
+<header class="nav"><a class="logo" href="{{url_for('index')}}">{{site['logo_text']}}</a>
+<nav><a href="{{url_for('index')}}">Beats</a>{% if session.get('admin') %}<a href="{{url_for('admin')}}">Studio</a><form class="inline" method="post" action="{{url_for('logout')}}"><button>Log out</button></form>{% else %}<a href="{{url_for('login')}}">Studio</a>{% endif %}</nav></header>
+{% with ms=get_flashed_messages() %}{% if ms %}<div class="flash">{% for m in ms %}{{m}}{% endfor %}</div>{% endif %}{% endwith %}
+<main>{% block content %}{% endblock %}</main><footer>{{site['artist_name']}} · {{site['tagline']}}</footer>
+<script src="{{url_for('static',filename='app.js')}}"></script></body></html>
