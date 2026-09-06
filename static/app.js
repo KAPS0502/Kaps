@@ -1,0 +1,1 @@
+document.querySelectorAll(".play").forEach(btn=>btn.addEventListener("click",()=>{const card=btn.closest(".card");const audio=card.querySelector("audio");document.querySelectorAll("audio").forEach(a=>{if(a!==audio)a.pause()});if(audio.paused){audio.play();btn.textContent="❚❚"}else{audio.pause();btn.textContent="▶"}audio.onended=()=>btn.textContent="▶"}));
