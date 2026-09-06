@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: beatvault
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: SECRET_KEY
+        generateValue: true
+    disk:
+      name: beat-storage
+      mountPath: /opt/render/project/src/uploads
+      sizeGB: 10
